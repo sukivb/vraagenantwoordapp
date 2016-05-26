@@ -7,7 +7,7 @@ var myApp = angular.module('myApp',['onsen']);
           $scope.app.navi;
           $scope.modal = null;
           $scope.pageModel = {};
-          $scope.pageModel["login"] = {email:"", password:""};
+          $scope.pageModel["login"] = {email:{value:"",valid:false}, password:{value:"",valid:false}, valid:false};
           $scope.pageModel["register"] = {username:"", email:"", password:"", passwordrepeat:""};
           if (!$scope.hasCache) {
              if ($scope.modal != null)
@@ -23,25 +23,53 @@ var myApp = angular.module('myApp',['onsen']);
           }
           
           $scope.checkMailValid = function(email) {
-              if (typeof email === undefined || !email)
-                   return false;
-               var valid = false;
-               if ((email.indexOf("@") > 1) && (email.indexOf(".") > email.indexOf("@")+1) && (email.length > email.indexOf(".")+2))
-                   valid = true;
-               return valid;
+              if (typeof email.value === undefined || !email.value)
+                   email.valid = false;
+                   return;
+               if ((email.value.indexOf("@") > 1) 
+                    && (email.value.indexOf(".") > email.value.indexOf("@")+1) 
+                    && (email.value.length > email.value.indexOf(".")+2))
+                   email.valid = true;
           }
           
+          $scope.checkPasswordValid = function(password) {
+              if (typeof password.value === undefined || !password.value)
+                   password.value = false;
+                   return;
+              if (password.value.length > 0)
+                   password.valid = true;
+          }
+          
+          
+        $scope.$watch('pageModel.login.email.valid', function() {
+            if ($scope.pageModel.login.email.valid)
+                $scope.pageModel.login.email.invalid ="";
+            else
+                $scope.pageModel.login.email.invalid =" invalid";
+            
+        });
+          
+          $scope.$watch('pageModel.login.password.valid', function() {
+            if ($scope.pageModel.login.password.valid)
+                $scope.pageModel.login.password.invalid ="";
+            else
+                $scope.pageModel.login.password.invalid =" invalid";
+            
+        });
           $scope.validate = function() {
-              var valid = true;
                if (arguments[0] == 'login') {
                    // handle login form
                    if (arguments[1] == "email") {
-                    valid = $scope.checkMailValid($scope.pageModel.login.email);
-                   } 
+                    $scope.pageModel.login.email.valid = $scope.checkMailValid($scope.pageModel.login.email);
+                   } else if (arguments[1] == "password") {
+                    $scope.pageModel.login.password.valid = $scope.checkPasswordValid($scope.pageModel.login.password);
+                   } else {
+                    $scope.pageModel.login.valid = $scope.pageModel.login.email.valid
+                        && $scope.pageModel.login.password.valid;
+                   }
                } else if (arguments[0] == 'register')  {
-                   valid = false;
+                   $scope.pageModel.valid = false;
                }
-               return valid;
           }
           
           $scope.ingelogd = function() {
@@ -102,4 +130,6 @@ var myApp = angular.module('myApp',['onsen']);
             }
         };
     });
+    
+    
 //var myApp = angular.module('myApp',['onsen']);
