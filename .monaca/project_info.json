@@ -1,0 +1,25 @@
+{
+    "plugins": [
+        "mobi.monaca.plugins.Monaca",
+        "mobi.monaca.plugins.MonacaBackend"
+    ],
+    "framework_version": "3.5",
+    "xcode_version": "6",
+    "cordova_version": "5.2",
+    "plugin_settings": [],
+    "external_plugins": [
+        "cordova-plugin-whitelist@1.0.0",
+        "cordova-plugin-splashscreen@2.1.0"
+    ],
+    "title-ja": "",
+    "title-en": "Vraag en Antwoord",
+    "description-ja": "",
+    "description-en": "Een app waarmee vragen gesteld kunnen worden die tegen betaling beantwoord worden",
+    "category": "User Template",
+    "platform": [
+        "android",
+        "ios",
+        "chrome"
+    ],
+    "name": "generated-1464219808-574377867e2193404251d104"
+}

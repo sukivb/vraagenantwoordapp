@@ -1,0 +1,38 @@
+<ons-page>
+  <ons-toolbar>
+    <div class="center">Registreren</div>
+  </ons-toolbar>
+
+  <div class="login-form">
+    <img ng-bind="image"  src="{{image}}" width="200" height="200" alt="{{name}}" />
+    <input name="username" type="email" class="text-input--underbar" placeholder="Gebruikersnaam" value="">
+    <input name="email" type="email" class="text-input--underbar" placeholder="Email" value="">
+    <input name="password" type="password" class="text-input--underbar" placeholder="Wachtwoord" value="">
+    <input name= "password_again" type="password" class="text-input--underbar" placeholder="Herhaal wachtwoord" value="">
+    <ons-button modifier="large" class="login-button">Registreren</ons-button>
+  </div>
+
+</ons-page>
+
+<style>
+.login-form {
+  text-align: center;
+  width: 80%;
+  margin: 30px auto 0;
+}
+
+input[type=email], input[type=password] {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  outline: none;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.login-button {
+  width: 100%;
+  margin: 0 auto;
+}
+
+</style>
