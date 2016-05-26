@@ -1,4 +1,4 @@
-<ons-navigator ng-controller="AppController" animation="slide" title="Navigator" var="myNavigator">
+<ons-navigator ng-controller="AppController" animation="slide" var="myNavigator">
    <ons-include ng-if="!ingelogd()" ng-hide="ingelogd()" ng-show="!ingelogd()" page="login.html"></ons-include> 
 </ons-navigator>
 <ons-template ng-controller="AppController" ng-if="!ingelogd()" id="register.html">
@@ -6,7 +6,7 @@
 </ons-template>
 <ons-template id="hoofdmenu.html">
 <ons-page ng-if="ingelogd()" ng-hide="!ingelogd()" ng-show="ingelogd()" id="main_menu.html">
-<ons-tabbar ng-controller="AppController" animation="slide" title="Navigator" var="mainMenuTabBar">
+<ons-tabbar ng-controller="AppController" animation="slide" var="mainMenuTabBar">
     <ons-tabbar-item
         icon="list"
         label="Overzicht"
