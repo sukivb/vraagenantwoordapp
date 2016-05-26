@@ -1,0 +1,23 @@
+<ons-page ng-controller="AppController as app" ng-if="!ingelogd()">
+  <link href="css/style.css" rel="stylesheet">
+  <ons-toolbar>
+    <div class="center">Inloggen <span ng-show="name != 'Onbekend'"> bij {{name}}</span></div>
+  </ons-toolbar>
+  <div class="logo-large">
+  <img ng-src="{{image}}" width="200" height="200" ng-show="hasCache" />
+  <img ng-src="img/loading.gif" ng-hide="hasCache" />
+  </div>
+ 
+  <div class="login-form" ng-controller="LoginCtrl as login">
+    <form ng-model="form" name="loginForm" novalidate>
+    <input ng-model="loginData.email" name="email" type="email" class="text-input--underbar" placeholder="Email" required>
+    <input ng-model="loginData.password" name="password" type="password" class="text-input--underbar" placeholder="Wachtwoord" required>
+    <br><br>
+    <ons-button modifier="large" type="submit" class="login-button" ng-click="login(loginData)" ng-disabled="!loginForm.$valid">Log In</ons-button>
+    <ons-button modifier="quiet" class="forgot-password">Wachtwoord vergeten?</ons-button>
+    <ons-button modifier="quiet" class="register" ng-click="app.navi.pushPage('register.html');">Registreren</ons-button> 
+    </form>
+</div>
+  
+
+</ons-page>
