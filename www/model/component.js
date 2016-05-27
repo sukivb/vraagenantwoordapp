@@ -66,8 +66,7 @@ var addComponent = function() {
         "controllerName":controllerName,
         "controller":runnableCtrl,
         "controllerSignature":signature,
-        "controllerLinkCount":0,
-        "about": function() {console}
+        "controllerLinkCount":0
     };
     runnableModule().controller(controllerName, constructor);
     availableDependencies.push([componentName]);

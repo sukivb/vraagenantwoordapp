@@ -29,4 +29,4 @@ var myModuleOptions = [];
 // Send variables to addComponent to wrap things up
 var myComponent = addComponent(myComponentName,myDependencies, myController, mySignature, myModuleOptions);
 // For more information about the component injection into the system execute "{myComponentName}Component.about()";
-console.log(myComponent.about())
+console.log(JSON.stringify(myComponent));

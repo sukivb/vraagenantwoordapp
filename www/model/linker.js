@@ -42,6 +42,7 @@
             };
     
     var link = function(config, callback){
+        alert("test");
         var root = config;
         var myApp = null;
         var translator = null;
