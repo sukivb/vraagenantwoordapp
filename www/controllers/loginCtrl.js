@@ -4,7 +4,16 @@ myApp.controller('LoginCtrl', ['$scope', function($scope) {
           $scope.form = null;
           $scope.login = function(loginData) {
              // Hier komt de cloud-user-inlog code.
-                alert(JSON.stringify(loginData));
+             monaca.cloud.User.login(loginData.email, loginData.password).done(function()
+            {
+              console.log('Login is success!');
+              ons.navigator.pushPage("register.html", {});
+            })
+            .fail(function(err)
+            {
+              console.log(err.message);
+              alert('Login failed!');
+            });
           }
           
           $scope.ingelogd = function() {

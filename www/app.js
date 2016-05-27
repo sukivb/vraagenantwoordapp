@@ -1,6 +1,6 @@
 // This is a JavaScript file
-var myApp = angular.module('myApp',['onsen']);
-       
+var myApp = angular.module('myApp',['onsen','model','translator']);
+    
     myApp.controller('AppController', ['$scope', function($scope) {
           $scope.app = {};
           $scope.pageModel = {};
@@ -29,8 +29,8 @@ var myApp = angular.module('myApp',['onsen']);
                 $scope.hasCache = false;
               };
           if (!$scope.hasCache) {
-              $scope.StyleAPI = monaca.cloud.Collection("LogoAndStyle");
-              $scope.StyleAPI.findOne('appID == "VenA"', "_createdAt DESC")
+              $scope.StyleAPI = monaca.cloud.Collection("AppSettings");
+              $scope.StyleAPI.findOne('appID == "VenA" && type == "brand"', "_createdAt DESC")
                 .done(function(result)
                 {
                 $scope.$apply(function() {
@@ -68,6 +68,9 @@ var myApp = angular.module('myApp',['onsen']);
             }
         };
     });
-    
+// myApp.config(function($provide, $compileProvider, $filterProvider) {
+//     $filterProvider.register('filterName', ...);
+//   });
+ 
     
 //var myApp = angular.module('myApp',['onsen']);
