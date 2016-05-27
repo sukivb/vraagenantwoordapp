@@ -68,6 +68,7 @@ var myApp = angular.module('myApp',['onsen','model','translator']);
             }
         };
     });
+
 // myApp.config(function($provide, $compileProvider, $filterProvider) {
 //     $filterProvider.register('filterName', ...);
 //   });
