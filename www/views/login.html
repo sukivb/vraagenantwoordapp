@@ -1,6 +1,6 @@
 <ons-page ng-controller="AppController as app" ng-if="!ingelogd()">
   <ons-toolbar>
-    <div class="center">{{(hasCache) ? "Inloggen" : "Verbinden"|localText}}</div>
+    <div class="center">{{(hasCache) ? "Inloggen" : "Verbinden"|localText}}<span ng-show="hasCache"> {{"bij"|localText}} {{name|localText}}</span></div>
   </ons-toolbar>
   <div class="logo-large">
   <img ng-src="{{image}}" width="200" height="200" ng-show="hasCache" />

@@ -1,5 +1,6 @@
-// This is a JavaScript file
-myApp.controller('LoginCtrl', ['$scope', function($scope) {
+var linkLoginCtrl = function() {   
+    var loginCtrl = angular.module("login", [requires], [configFn])
+    myApp.controller('LoginCtrl', ['$scope', function($scope) {
           $scope.loginData = {};
           $scope.form = null;
           $scope.login = function(loginData) {
@@ -23,3 +24,4 @@ myApp.controller('LoginCtrl', ['$scope', function($scope) {
           }
        }
     ]); 
+};
