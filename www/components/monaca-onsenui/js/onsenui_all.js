@@ -192,10 +192,10 @@
  * The above creates an instance of minErr in the example namespace. The
  * resulting error will have a namespaced error code of example.one.  The
  * resulting error will replace {0} with the value of foo, and {1} with the
- * value of bar. The object is not restricted in the number of arguments it can
+ * value of bar. The object is not restricted in the number of args it can
  * take.
  *
- * If fewer arguments are specified than necessary for interpolation, the extra
+ * If fewer args are specified than necessary for interpolation, the extra
  * interpolation markers will be preserved in the final string.
  *
  * Since data will be parsed statically during a build step, some restrictions
@@ -1183,7 +1183,7 @@ function shallowCopy(src, dst) {
  *
  * @param {*} o1 Object or value to compare.
  * @param {*} o2 Object or value to compare.
- * @returns {boolean} True if arguments are equal.
+ * @returns {boolean} True if args are equal.
  */
 function equals(o1, o2) {
   if (o1 === o2) return true;
@@ -3362,9 +3362,9 @@ forEach({
     var i, key;
     var nodeCount = this.length;
 
-    // jqLiteHasClass has only two arguments, but is a getter-only fn, so we need to special-case it
+    // jqLiteHasClass has only two args, but is a getter-only fn, so we need to special-case it
     // in a way that survives minification.
-    // jqLiteEmpty takes no arguments but is a setter.
+    // jqLiteEmpty takes no args but is a setter.
     if (fn !== jqLiteEmpty &&
         (((fn.length == 2 && (fn !== jqLiteHasClass && fn !== jqLiteController)) ? arg1 : arg2) === undefined)) {
       if (isObject(arg1)) {
@@ -5112,7 +5112,7 @@ var $AnimateProvider = ['$provide', function($provide) {
    *
    *   * `eventFn`: `function(element, ... , doneFunction, options)`
    *   The element to animate, the `doneFunction` and the options fed into the animation. Depending
-   *   on the type of animation additional arguments will be injected into the animation function. The
+   *   on the type of animation additional args will be injected into the animation function. The
    *   list below explains the function signatures for the different animation methods:
    *
    *   - setClass: function(element, addedClasses, removedClasses, doneFunction, options)
@@ -5212,7 +5212,7 @@ var $AnimateProvider = ['$provide', function($provide) {
      * {@link ngAnimate ngAnimate module page}.
      */
     return {
-      // we don't call it directly since non-existant arguments may
+      // we don't call it directly since non-existant args may
       // be interpreted as null within the sub enabled function
 
       /**
@@ -5237,7 +5237,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        *     as well as among its children
        * @param {Function} callback the callback function that will be fired when the listener is triggered
        *
-       * The arguments present in the callback function are:
+       * The args present in the callback function are:
        * * `element` - The captured DOM element that the animation was fired on.
        * * `phase` - The phase of the animation. The two possible phases are **start** (when the animation starts) and **close** (when it ends).
        */
@@ -5249,7 +5249,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        * @name $animate#off
        * @kind function
        * @description Deregisters an event listener based on the event which has been associated with the provided element. This method
-       * can be used in three different ways depending on the arguments:
+       * can be used in three different ways depending on the args:
        *
        * ```js
        * // remove all the animation event listeners listening for `enter`
@@ -8332,7 +8332,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         }
 
         // This is the function that is injected as `$transclude`.
-        // Note: all arguments are optional!
+        // Note: all args are optional!
         function controllersBoundTransclude(scope, cloneAttachFn, futureParentElement) {
           var transcludeControllers;
 
@@ -9473,7 +9473,7 @@ function parseHeaders(headers) {
  * @returns {function(string=)} Returns a getter function which if called with:
  *
  *   - if called with single an argument returns a single header value or null
- *   - if called with no arguments returns an object containing all headers.
+ *   - if called with no args returns an object containing all headers.
  */
 function headersGetter(headers) {
   var headersObj;
@@ -11902,8 +11902,8 @@ var locationPrototype = {
    * If `paramValue` is `true`, the property specified via the first argument will be added with no
    * value nor trailing equal sign.
    *
-   * @return {Object} If called with no arguments returns the parsed `search` object. If called with
-   * one or more arguments returns `$location` object itself.
+   * @return {Object} If called with no args returns the parsed `search` object. If called with
+   * one or more args returns `$location` object itself.
    */
   search: function(search, paramValue) {
     switch (arguments.length) {
@@ -13185,7 +13185,7 @@ function findConstantAndWatchExpressions(ast, $filter) {
   case AST.CallExpression:
     allConstants = ast.filter ? isStateless($filter, ast.callee.name) : false;
     argsToWatch = [];
-    forEach(ast.arguments, function(expr) {
+    forEach(ast.args, function(expr) {
       findConstantAndWatchExpressions(expr, $filter);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
@@ -13508,7 +13508,7 @@ ASTCompiler.prototype = {
       if (ast.filter) {
         right = self.filter(ast.callee.name);
         args = [];
-        forEach(ast.arguments, function(expr) {
+        forEach(ast.args, function(expr) {
           var argument = self.nextId();
           self.recurse(expr, argument);
           args.push(argument);
@@ -13523,7 +13523,7 @@ ASTCompiler.prototype = {
         self.recurse(ast.callee, right, left, function() {
           self.if_(self.notNull(right), function() {
             self.addEnsureSafeFunction(right);
-            forEach(ast.arguments, function(expr) {
+            forEach(ast.args, function(expr) {
               self.recurse(expr, self.nextId(), undefined, function(argument) {
                 args.push(self.ensureSafeObject(argument));
               });
@@ -13834,7 +13834,7 @@ ASTInterpreter.prototype = {
         this.nonComputedMember(left, right, self.expensiveChecks, context, create, self.expression);
     case AST.CallExpression:
       args = [];
-      forEach(ast.arguments, function(expr) {
+      forEach(ast.args, function(expr) {
         args.push(self.recurse(expr));
       });
       if (ast.filter) right = this.$filter(ast.callee.name);
@@ -15611,7 +15611,7 @@ function $RootScopeProvider() {
        *    - The `newCollection` object is the newly modified data obtained from the `obj` expression
        *    - The `oldCollection` object is a copy of the former collection data.
        *      Due to performance considerations, the`oldCollection` value is computed only if the
-       *      `listener` function declares two or more arguments.
+       *      `listener` function declares two or more args.
        *    - The `scope` argument refers to the current scope.
        *
        * @returns {function()} Returns a de-registration function for this listener. When the
@@ -16230,7 +16230,7 @@ function $RootScopeProvider() {
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to emit.
-       * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional one or more args which will be passed onto the event listeners.
        * @return {Object} Event object (see {@link ng.$rootScope.Scope#$on}).
        */
       $emit: function(name, args) {
@@ -16302,7 +16302,7 @@ function $RootScopeProvider() {
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to broadcast.
-       * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional one or more args which will be passed onto the event listeners.
        * @return {Object} Event object, see {@link ng.$rootScope.Scope#$on}
        */
       $broadcast: function(name, args) {
@@ -25504,7 +25504,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
            $scope.user = {
              name: function(newName) {
               // Note that newName can be undefined for two reasons:
-              // 1. Because it is called as a getter and thus called with no arguments
+              args
               // 2. Because the property should actually be set to undefined. This happens e.g. if the
               //    input is invalid
               return arguments.length ? (_name = newName) : _name;
@@ -25722,7 +25722,7 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
           $scope.user = {
             name: function(newName) {
               // Note that newName can be undefined for two reasons:
-              // 1. Because it is called as a getter and thus called with no arguments
+              args
               // 2. Because the property should actually be set to undefined. This happens e.g. if the
               //    input is invalid
               return arguments.length ? (_name = newName) : _name;
@@ -29155,7 +29155,7 @@ var minlengthDirective = function() {
 			touch = event.changedTouches[0];
 
 			// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
-			targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
+			targetElement = document.elementFromPoint(touargs- window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
 			targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
 		}
 
@@ -29826,7 +29826,7 @@ var Utils = Hammer.utils = {
      * @param {Object} obj
      * @return {Array}
      */
-    toArray: function toArray(obj) {
+    toArray: functargsay(obj) {
         return Array.prototype.slice.call(obj, 0);
     },
 
@@ -33096,9 +33096,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // This function accepts the same arguments as setImmediate, but
     // returns a function that requires no arguments.
     function partiallyApplied(handler) {
-        var args = [].slice.call(arguments, 1);
+        vaargs[].slice.call(arguments, 1);
         return function() {
-            if (typeof handler === "function") {
+        argsypeof handler === "function") {
                 handler.apply(undefined, args);
             } else {
                 (new Function("" + handler))();
@@ -49709,8 +49709,7 @@ window.animit = (function(){
      * Queue transition animations.
      *
      * @param {Float} seconds
-     */
-    wait: function(seconds) {
+     *argst: function(seconds) {
       var self = this;
       this.transitionQueue.push(function(done) {
         setTimeout(done, 1000 * seconds);
@@ -49873,8 +49872,7 @@ window.animit = (function(){
 
 
   /**
-   * @param {Object} options
-   * @param {Float} [options.duration]
+   * @param {Object} oargs * @param {Float} [options.duration]
    * @param {String} [options.property]
    * @param {String} [options.timing]
    */

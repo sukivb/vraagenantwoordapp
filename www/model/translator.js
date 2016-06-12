@@ -1,8 +1,5 @@
 
-var linkTranslator = function(languageData) {
-    var translator = angular.module('translator', []); 
-    var filter = translator.filter("localText", function() {
-       
+    application.filter("localText", function() {
        var localTextFilter = function(input) {
           if (typeof languageData.translations[languageData.language] == "undefined")
             return input;
@@ -17,17 +14,10 @@ var linkTranslator = function(languageData) {
       }
       return localTextFilter;
     }).controller('LanguageController', ['$scope', function($scope) {
-      var unknownStrings = new Set([]);
-      if (typeof $rootScope.knownLanguages == "undefined")
-           knownLanguages = ["en"];
-      if (Array(knownLanguages).lastIndexOf(language) == -1)
-         language = knownLanguages[0];
-      else
-         language = language;
+      if (typeof languageData.knownLanguages == "undefined")
+          languageData.knownLanguages = ["en"];
+      if (Array(languageData.knownLanguages).lastIndexOf(languageData.language) == -1)
+          languageData.language = languageData.knownLanguages[0];
+        
     }]);
-    
- return this;   
-};
 
-    
-   

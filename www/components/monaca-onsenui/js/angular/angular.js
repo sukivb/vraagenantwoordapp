@@ -17,10 +17,10 @@
  * The above creates an instance of minErr in the example namespace. The
  * resulting error will have a namespaced error code of example.one.  The
  * resulting error will replace {0} with the value of foo, and {1} with the
- * value of bar. The object is not restricted in the number of arguments it can
+ * value of bar. The object is not restricted in the number of args it can
  * take.
  *
- * If fewer arguments are specified than necessary for interpolation, the extra
+ * If fewer args are specified than necessary for interpolation, the extra
  * interpolation markers will be preserved in the final string.
  *
  * Since data will be parsed statically during a build step, some restrictions
@@ -851,7 +851,7 @@ function arrayRemove(array, value) {
       };
 
       $scope.reset = function() {
-        // Example with 2 arguments
+        args
         angular.copy($scope.master, $scope.user);
       };
 
@@ -1009,8 +1009,7 @@ function shallowCopy(src, dst) {
  * @param {*} o1 Object or value to compare.
  * @param {*} o2 Object or value to compare.
  * @returns {boolean} True if arguments are equal.
- */
-function equals(o1, o2) {
+ *argsn equals(o1, o2) {
   if (o1 === o2) return true;
   if (o1 === null || o2 === null) return false;
   if (o1 !== o1 && o2 !== o2) return true; // NaN === NaN
@@ -3187,10 +3186,9 @@ forEach({
     var i, key;
     var nodeCount = this.length;
 
-    // jqLiteHasClass has only two arguments, but is a getter-only fn, so we need to special-case it
+    // jqLiteHasClass has only two arguments, but is a getargsfn, so we need to special-case it
     // in a way that survives minification.
-    // jqLiteEmpty takes no arguments but is a setter.
-    if (fn !== jqLiteEmpty &&
+    // jqLiteEmpty takes no arguments but is a settargsf (fn !== jqLiteEmpty &&
         (((fn.length == 2 && (fn !== jqLiteHasClass && fn !== jqLiteController)) ? arg1 : arg2) === undefined)) {
       if (isObject(arg1)) {
 
@@ -4937,7 +4935,7 @@ var $AnimateProvider = ['$provide', function($provide) {
    *
    *   * `eventFn`: `function(element, ... , doneFunction, options)`
    *   The element to animate, the `doneFunction` and the options fed into the animation. Depending
-   *   on the type of animation additional arguments will be injected into the animation function. The
+   *   on the type of animation additional arguments will be injecargsthe animation function. The
    *   list below explains the function signatures for the different animation methods:
    *
    *   - setClass: function(element, addedClasses, removedClasses, doneFunction, options)
@@ -5038,7 +5036,7 @@ var $AnimateProvider = ['$provide', function($provide) {
      */
     return {
       // we don't call it directly since non-existant arguments may
-      // be interpreted as null within the sub enabled function
+      // argsreted as null within the sub enabled function
 
       /**
        *
@@ -5062,7 +5060,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        *     as well as among its children
        * @param {Function} callback the callback function that will be fired when the listener is triggered
        *
-       * The arguments present in the callback function are:
+       * The arguments present in thargsk function are:
        * * `element` - The captured DOM element that the animation was fired on.
        * * `phase` - The phase of the animation. The two possible phases are **start** (when the animation starts) and **close** (when it ends).
        */
@@ -5076,7 +5074,7 @@ var $AnimateProvider = ['$provide', function($provide) {
        * @description Deregisters an event listener based on the event which has been associated with the provided element. This method
        * can be used in three different ways depending on the arguments:
        *
-       * ```js
+   argsjs
        * // remove all the animation event listeners listening for `enter`
        * $animate.off('enter');
        *
@@ -8157,8 +8155,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
         }
 
         // This is the function that is injected as `$transclude`.
-        // Note: all arguments are optional!
-        function controllersBoundTransclude(scope, cloneAttachFn, futureParentElement) {
+        // Note: all arguments are optional!argsfunction controllersBoundTransclude(scope, cloneAttachFn, futureParentElement) {
           var transcludeControllers;
 
           // No scope passed in:
@@ -9298,7 +9295,7 @@ function parseHeaders(headers) {
  * @returns {function(string=)} Returns a getter function which if called with:
  *
  *   - if called with single an argument returns a single header value or null
- *   - if called with no arguments returns an object containing all headers.
+ *   - if called with no arguments returns an obargsaining all headers.
  */
 function headersGetter(headers) {
   var headersObj;
@@ -11727,8 +11724,8 @@ var locationPrototype = {
    * If `paramValue` is `true`, the property specified via the first argument will be added with no
    * value nor trailing equal sign.
    *
-   * @return {Object} If called with no arguments returns the parsed `search` object. If called with
-   * one or more arguments returns `$location` object itself.
+   * @return {Object} If called with no arguments returns the pargsarch` object. If called with
+   * one or more arguments returns `$locargsject itself.
    */
   search: function(search, paramValue) {
     switch (arguments.length) {
@@ -13010,7 +13007,7 @@ function findConstantAndWatchExpressions(ast, $filter) {
   case AST.CallExpression:
     allConstants = ast.filter ? isStateless($filter, ast.callee.name) : false;
     argsToWatch = [];
-    forEach(ast.arguments, function(expr) {
+    forEach(ast.args, function(expr) {
       findConstantAndWatchExpressions(expr, $filter);
       allConstants = allConstants && expr.constant;
       if (!expr.constant) {
@@ -13333,7 +13330,7 @@ ASTCompiler.prototype = {
       if (ast.filter) {
         right = self.filter(ast.callee.name);
         args = [];
-        forEach(ast.arguments, function(expr) {
+        forEach(ast.args, function(expr) {
           var argument = self.nextId();
           self.recurse(expr, argument);
           args.push(argument);
@@ -13348,7 +13345,7 @@ ASTCompiler.prototype = {
         self.recurse(ast.callee, right, left, function() {
           self.if_(self.notNull(right), function() {
             self.addEnsureSafeFunction(right);
-            forEach(ast.arguments, function(expr) {
+            forEach(ast.args, function(expr) {
               self.recurse(expr, self.nextId(), undefined, function(argument) {
                 args.push(self.ensureSafeObject(argument));
               });
@@ -13659,7 +13656,7 @@ ASTInterpreter.prototype = {
         this.nonComputedMember(left, right, self.expensiveChecks, context, create, self.expression);
     case AST.CallExpression:
       args = [];
-      forEach(ast.arguments, function(expr) {
+      forEach(ast.args, function(expr) {
         args.push(self.recurse(expr));
       });
       if (ast.filter) right = this.$filter(ast.callee.name);
@@ -15437,7 +15434,7 @@ function $RootScopeProvider() {
        *    - The `oldCollection` object is a copy of the former collection data.
        *      Due to performance considerations, the`oldCollection` value is computed only if the
        *      `listener` function declares two or more arguments.
-       *    - The `scope` argument refers to the current scope.
+       *    argsope` argument refers to the current scope.
        *
        * @returns {function()} Returns a de-registration function for this listener. When the
        *    de-registration function is executed, the internal watch operation is terminated.
@@ -16055,7 +16052,7 @@ function $RootScopeProvider() {
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to emit.
-       * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional one or more arguments which will beargsnto the event listeners.
        * @return {Object} Event object (see {@link ng.$rootScope.Scope#$on}).
        */
       $emit: function(name, args) {
@@ -16127,7 +16124,7 @@ function $RootScopeProvider() {
        * onto the {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * @param {string} name Event name to broadcast.
-       * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
+       * @param {...*} args Optional one or more arguments which will beargsnto the event listeners.
        * @return {Object} Event object, see {@link ng.$rootScope.Scope#$on}
        */
       $broadcast: function(name, args) {
@@ -25547,7 +25544,7 @@ var DEFAULT_REGEXP = /(\s+|^)default(\s+|$)/;
           $scope.user = {
             name: function(newName) {
               // Note that newName can be undefined for two reasons:
-              // 1. Because it is called as a getter and thus called with no arguments
+              args
               // 2. Because the property should actually be set to undefined. This happens e.g. if the
               //    input is invalid
               return arguments.length ? (_name = newName) : _name;

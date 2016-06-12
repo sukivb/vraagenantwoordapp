@@ -790,7 +790,7 @@
 		if (deviceIsIOSWithBadTarget) {
 			touch = event.changedTouches[0];
 
-			// In certain cases arguments of elementFromPoint can be negative, so prevent setting targetElement to null
+			// In certain cases args of elementFromPoint can be negative, so prevent setting targetElement to null
 			targetElement = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset) || targetElement;
 			targetElement.fastClickScrollParent = this.targetElement.fastClickScrollParent;
 		}
@@ -1457,7 +1457,7 @@ var Utils = Hammer.utils = {
     },
 
     /**
-     * convert an array-like object (`arguments`, `touchlist`) to an array
+     * convert an array-like object (`args`, `touchlist`) to an array
      * @method toArray
      * @param {Object} obj
      * @return {Array}
@@ -4729,8 +4729,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         return nextHandle++;
     }
 
-    // This function accepts the same arguments as setImmediate, but
-    // returns a function that requires no arguments.
+    // This function accepts the same args as setImmediate, but
+    // returns a function that requires no args.
     function partiallyApplied(handler) {
         var args = [].slice.call(arguments, 1);
         return function() {
@@ -21335,7 +21335,7 @@ window.animit = (function(){
       } else if (transition instanceof Animit.Transition) {
         queue.push(transition.build());
       } else {
-        throw new Error('Invalid arguments');
+        throw new Error('Invalid args');
       }
 
       return this;
@@ -21501,7 +21501,7 @@ window.animit = (function(){
   /**
    * @param {Animit} arguments
    */
-  Animit.runAll = function(/* arguments... */) {
+  Animit.runAll = function(/* args... */) {
     for (var i = 0; i < arguments.length; i++) {
       arguments[i].play();
     }

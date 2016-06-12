@@ -1,4 +1,4 @@
-<ons-page ng-controller="AppController as app" ng-if="!ingelogd()">
+<ons-template ng-controller="loginCtrl" id="login.html">
   <ons-toolbar>
     <div class="center">{{(hasCache) ? "Inloggen" : "Verbinden"|localText}}<span ng-show="hasCache"> {{"bij"|localText}} {{name|localText}}</span></div>
   </ons-toolbar>
@@ -17,6 +17,4 @@
     <ons-button modifier="quiet" class="register" ng-click="app.navi.pushPage('register.html');">Registreren</ons-button> 
     </form>
 </div>
-  
-
-</ons-page>
+</ons-template>
