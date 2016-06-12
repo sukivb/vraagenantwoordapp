@@ -1,6 +1,6 @@
 var config = {};
 config.knownLanguages = ['en','nl'];
-config.language = "en";
+config.language = "nl";
 config.translations = {
             "nl": {
                 // Login-screen Dutch
@@ -9,7 +9,8 @@ config.translations = {
                 "Verbinden":"Verbinden",
                 "Email":"Email",
                 "Wachtwoord":"Wachtwoord",
-                "Wachtwoord vergeten?":"Wachtwoord vergeten?"
+                "Wachtwoord vergeten?":"Wachtwoord vergeten?",
+                "Registreren":"Registreren"
             },
             "en": {
                 // Login-screen English
@@ -18,7 +19,8 @@ config.translations = {
                 "Verbinden":"Connecting",
                 "Email":"Email",
                 "Wachtwoord":"Password",
-                "Wachtwoord vergeten?":"Forgot password?"
+                "Wachtwoord vergeten?":"Forgot password?",
+                "Registreren":"Register"
             }
         };
 var languageData=config;

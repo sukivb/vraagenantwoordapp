@@ -55,12 +55,11 @@ var styleAPICall = function ($q,scope) {
 application.controller('LoginCtrl', ['$scope', function($scope) {
     $scope.loginData = {};
     $scope.form = null;
-    $scope.image = $scope.myNavigator.topPage.data.logo;
-    $scope.name = $scope.myNavigator.topPage.data.brand;
 
-    $scope.login = function(loginData) {
+    this.login = function(loginData) {
+        alert(JSON.stringify(loginData));
         // Hier komt de cloud-user-inlog code.
-        monaca.cloud.User.login(loginData.email, loginData.password).done(function()
+        monaca.cloud.User.login(loginData.email,loginData.password).done(function()
         {
             console.log('Login is success!');
             $scope.myNavigator.pushPage("register.html", $scope.navOptions);
@@ -68,9 +67,9 @@ application.controller('LoginCtrl', ['$scope', function($scope) {
             .fail(function(err)
             {
                 console.log(err.message);
-                alert('Login failed!');
+                ons.notification.alert('Login failed!');
             });
-    }
+    };
 
     
 }
@@ -88,6 +87,10 @@ application.controller('ApplicationCtrl', ['$q','$scope', function($q,$scope) {
 
     var promiseLanguage= languageAPICall($q,$scope);
 
+    $scope.navOptions = {
+        animation: "lift"
+    };
+
     promiseStyle.then(function(result) {
         console.log('Success: ' + result);
 
@@ -98,11 +101,8 @@ application.controller('ApplicationCtrl', ['$q','$scope', function($q,$scope) {
         promiseLanguage.then(function(result) {
             console.log('Success: ' + result);
 
-
                 languageData = result;
-                $scope.navOptions = {
-                    animation: 'slide', // What animation to use
-                };
+
                 if ($scope.ingelogd())
                     $scope.myNavigator.pushPage('navigator.html',$scope.navOptions);
                 else
